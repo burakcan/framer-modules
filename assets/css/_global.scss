@@ -1,0 +1,59 @@
+html {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+    font-size: 18px;
+    line-height: 1;
+    color: #111;
+    background-color: #eee;
+}
+
+a {
+    text-decoration: none;
+    color: #25c6c6;
+    user-select: none;
+    transition: $transition;
+
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
+h1, h2, h3, h4, h5, h6, strong, b {
+    font-weight: 400;
+}
+
+.container {
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.icon {
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    vertical-align: middle;
+    background-repeat: no-repeat;
+    background-image: url("../img/sprite.svg");
+
+    &-demo {
+        background-position: 0 0;
+    }
+    &-url {
+        background-position: -34px 0;
+    }
+    &-profile {
+        background-position: -68px 0;
+    }
+    &-search {
+        background-position: -102px 0;
+    }
+    &-close {
+        background-position: -136px 0;
+    }
+    &-expand {
+        background-position: -170px 0;
+    }
+}
