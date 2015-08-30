@@ -8,7 +8,7 @@
     "build-prod": "NODE_ENV=production node build.js"
   },
   "keywords": [],
-  "author": "Adem Ilter <adem@interacthings.com>",
+  "author": "Burak Can <neoberg@gmail.com>",
   "license": "GPL-3.0",
   "dependencies": {
     "humps": "^0.6.0",
