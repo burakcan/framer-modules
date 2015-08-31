@@ -8,7 +8,10 @@
     "build-prod": "NODE_ENV=production node build.js"
   },
   "keywords": [],
-  "author": "Burak Can <neoberg@gmail.com>",
+  "author": "Adem Ilter <adem@interacthings.com>",
+  "contributors": [
+    "Burak Can <neoberg@gmail.com>"
+  ],
   "license": "GPL-3.0",
   "dependencies": {
     "humps": "^0.6.0",
@@ -30,7 +33,6 @@
     "node-sass": "^3.3.2",
     "sass-loader": "^2.0.1",
     "style-loader": "^0.12.3",
-    "url-loader": "^0.5.6",
     "webpack": "^1.12.0",
     "webpack-dev-server": "^1.10.1"
   }
