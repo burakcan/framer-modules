@@ -22,6 +22,22 @@ class ModuleList extends Component {
     });
   }
 
+  componentWillUpdate() {
+    const { selected } = this.state;
+    const { searchTerm, searchResult } = this.context;
+
+    if (this._lastSearchTerm !== searchTerm &&
+        searchTerm && searchResult &&
+        !searchResult[selected]) {
+
+      this.setState({
+        selected : null
+      });
+    }
+
+    this._lastSearchTerm = this.context.searchTerm;
+  }
+
   renderItems() {
     const { searchTerm, searchResult, modules } = this.context;
 
