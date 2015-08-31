@@ -19,7 +19,7 @@ function addIndexes(items, state) {
     const item = items[id];
     index.add({
       id          : id,
-      name        : item.title || item.name,
+      name        : item.name,
       description : item.description
     });
   }

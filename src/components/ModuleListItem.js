@@ -35,7 +35,7 @@ class ModuleListItem extends Component {
       <li data-selected={selected} onClick={selected ? null : onClick} className="module">
         <div className="container">
           <div className="module-info">
-            <h2 className="module-info_name">{name || title}</h2>
+            <h2 className="module-info_name">{name}</h2>
             <p className="module-info_description">{description}</p>
             <button onClick={selected ? onClose : null} type="button" className="module_switch">
               <i className="icon icon-close"></i>
