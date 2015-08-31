@@ -11,7 +11,9 @@ class ModuleList extends Component {
 
   getChildContext() {
     return {
-      modules : this.props.modules
+      modules      : this.props.modules,
+      searchTerm   : this.props.searchTerm,
+      searchResult : this.props.searchResult
     }
   }
 
@@ -23,16 +25,22 @@ class ModuleList extends Component {
 }
 
 ModuleList.childContextTypes = {
-  modules : PropTypes.object
+  modules      : PropTypes.object,
+  searchTerm   : PropTypes.string,
+  searchResult : PropTypes.object
 }
 
 ModuleList.propTypes = {
-  modules : PropTypes.object
+  modules      : PropTypes.object,
+  searchTerm   : PropTypes.string,
+  searchResult : PropTypes.object
 }
 
 ModuleList.mapStateToProps = (state) => {
   return {
-    modules : state.modules
+    modules      : state.modules.modules,
+    searchTerm   : state.modules.search.term,
+    searchResult : state.modules.search.result
   }
 }
 

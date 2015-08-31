@@ -13,3 +13,13 @@ export function fetchModules() {
     }
   }
 }
+
+
+export const SEARCH_MODULE = 'SEARCH_MODULE';
+
+export function searchModule(searchTerm) {
+  return {
+    type      : SEARCH_MODULE,
+    payload   : searchTerm
+  }
+}
