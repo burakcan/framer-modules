@@ -38,6 +38,7 @@ function search(searchTerm, state) {
 }
 
 const initialState = {
+  loading   : true,
   modules   : {},
   search    : {
     focused : false,
@@ -55,6 +56,7 @@ export default (state = initialState, action) => {
       const modules = action.payload;
       addIndexes(modules, newState);
       newState.modules = modules;
+      newState.loading = false;
       break;
 
     case ActionTypes.SEARCH_MODULE:

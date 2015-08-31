@@ -75,6 +75,7 @@ ModuleList.contextTypes = {
   searchTerm   : PropTypes.string,
   searchResult : PropTypes.object,
   searchFocused: PropTypes.bool,
+  loading      : PropTypes.bool,
 }
 
 export default ModuleList;

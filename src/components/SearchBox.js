@@ -2,6 +2,12 @@ import React, { Component, PropTypes } from 'react';
 import { searchModule, searchFocus, searchBlur } from 'actions';
 
 class SearchBox extends Component {
+  componentDidMount() {
+    const el = React.findDOMNode(this);
+    el.style.width = '100%';
+    $(el).sticky();
+  }
+
   handleChange() {
     const value = React.findDOMNode(this.refs['search']).value;
     let searchTerm = null;

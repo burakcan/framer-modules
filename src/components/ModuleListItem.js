@@ -3,24 +3,16 @@ import { Spring } from 'react-motion';
 
 class ModuleListItem extends Component {
 
-  setSpringEnd() {
+  componentDidMount() {
     const detailEl = React.findDOMNode(this._detail)
 
     detailEl.style.display = 'block';
 
     this.springEnd = {
-      height : {val : detailEl.getClientRects()[0].height + 20, config: [50, 8]}
+      height : {val : detailEl.getClientRects()[0].height + 20, config: [120, 10]}
     }
 
     detailEl.style.display = 'none';
-  }
-
-  getSpringEnd() {
-    return this.springEnd || { height : {val : 0} };
-  }
-
-  componentDidMount() {
-    this.setSpringEnd();
   }
 
   render() {
@@ -29,7 +21,7 @@ class ModuleListItem extends Component {
     const author = data.author[0];
 
     const defaultValue = { height : {val : 0} }
-    const endValue = this.getSpringEnd();
+    const endValue = this.springEnd || defaultValue;
 
     return (
       <li data-selected={selected} onClick={selected ? null : onClick} className="module">
@@ -82,6 +74,13 @@ class ModuleListItem extends Component {
       </li>
     )
   }
+}
+
+ModuleListItem.propTypes = {
+  selected : PropTypes.bool.isRequired,
+  data     : PropTypes.object.isRequired,
+  onClick  : PropTypes.func.isRequired,
+  onClose  : PropTypes.func.isRequired,
 }
 
 export default ModuleListItem;
