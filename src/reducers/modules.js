@@ -8,6 +8,7 @@ function createSearchIndex() {
     this.field('url');
     this.field('demo');
     this.ref('id');
+    this.pipeline.remove(this.stemmer);
   });
 }
 
@@ -37,11 +38,12 @@ function search(searchTerm, state) {
 }
 
 const initialState = {
-  modules  : {},
-  search   : {
-    term   : null,
-    result : null,
-    index  : createSearchIndex()
+  modules   : {},
+  search    : {
+    focused : false,
+    term    : null,
+    result  : null,
+    index   : createSearchIndex()
   }
 }
 
@@ -59,6 +61,14 @@ export default (state = initialState, action) => {
       const searchTerm = (action.payload === '') ? null : action.payload;
       newState.search.term   = searchTerm;
       newState.search.result = search(searchTerm, newState);
+      break;
+
+    case ActionTypes.SEARCH_FOCUS:
+      newState.search.focused = true;
+      break;
+
+    case ActionTypes.SEARCH_BLUR:
+      newState.search.focused = false;
       break;
   }
 
