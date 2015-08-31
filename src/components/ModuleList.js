@@ -23,19 +23,19 @@ class ModuleList extends Component {
   }
 
   renderItems() {
-    const modules = this.context.modules;
-    if (modules._initial) return false;
+    const { searchTerm, searchResult, modules } = this.context;
 
-    const items = [];
+    const _items = (searchTerm) ? searchResult : modules;
+    const items  = [];
 
-    for (const index in modules) {
+    for (const index in _items) {
       const selected = this.state.selected === index;
       items.push(
         <ModuleListItem
           onClose={this.handleClose.bind(this, index)}
           onClick={this.handleClick.bind(this, index)}
           selected={selected}
-          data={modules[index]}
+          data={_items[index]}
           key={index} />
       )
     }
@@ -45,7 +45,7 @@ class ModuleList extends Component {
 
   render() {
     const selected = (this.state.selected)?true:false;
-    
+
     return (
       <ul data-module-selected={selected} className="modules">
         { this.renderItems() }
@@ -55,7 +55,9 @@ class ModuleList extends Component {
 }
 
 ModuleList.contextTypes = {
-  modules : PropTypes.object
+  modules      : PropTypes.object,
+  searchTerm   : PropTypes.string,
+  searchResult : PropTypes.object
 }
 
 export default ModuleList;
