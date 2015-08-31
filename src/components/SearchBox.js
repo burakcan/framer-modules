@@ -1,14 +1,27 @@
 import React, { Component, PropTypes } from 'react';
-import { searchModule } from 'actions';
+import { searchModule, searchFocus, searchBlur } from 'actions';
 
 class SearchBox extends Component {
+  componentDidMount() {
+    const el = React.findDOMNode(this);
+    el.style.width = '100%';
+    $(el).sticky();
+  }
+
   handleChange() {
     const value = React.findDOMNode(this.refs['search']).value;
     let searchTerm = null;
 
     if (value.length > 2) searchTerm = value;
-
     this.context.store.dispatch( searchModule(searchTerm) );
+  }
+
+  handleFocus() {
+    this.context.store.dispatch( searchFocus() );
+  }
+
+  handleBlur() {
+    this.context.store.dispatch( searchBlur() );
   }
 
   render() {
@@ -20,7 +33,12 @@ class SearchBox extends Component {
             type="search"
             placeholder="Search"
             ref='search'
-            onChange={this.handleChange.bind(this)} />
+            onFocus={this.handleFocus.bind(this)}
+            onChange={this.handleChange.bind(this)}
+            onBlur={this.handleBlur.bind(this)} />
+            <button className="search_clear" type="button">
+              <i className="icon icon-close"></i>
+            </button>
         </div>
       </div>
     )

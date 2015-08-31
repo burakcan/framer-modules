@@ -35,8 +35,11 @@
         padding-right: 40px;
 
         &_name {
-            font-size: 24px;
+            font-size: 18px;
             transition: $transition;
+            @include big() {
+                font-size: 24px;
+            }
 
             .module[data-selected="true"] & {
                 font-weight: 700;
@@ -48,8 +51,12 @@
         }
 
         &_description {
-            margin-top: 10px;
-            color: #999;
+            margin-top: 6px;
+            line-height: 1.3;
+            color: #777;
+            @include big() {
+                margin-top: 8px;
+            }
 
             .module[data-selected="true"] & {
                 color: #444;
@@ -59,13 +66,15 @@
 
     &_switch {
         position: absolute;
-        right: 0;
+        right: -10px;
         top: 50%;
         transform: translateY(-50%);
         width: 40px;
         height: 40px;
-        background-color: transparent;
         transition: $transition;
+        @include big() {
+            right: 0;
+        }
 
         .modules[data-module-selected="true"] .module:not([data-selected="true"]) & {
             opacity: .5;
@@ -105,6 +114,22 @@
             width: 40px;
             height: 1px;
             background-color: rgba(black, .1);
+        }
+
+        li {
+            & + li {
+                margin-top: 5px;
+                @include big() {
+                    margin-top: 0;
+                }
+            }
+        }
+
+        a {
+            display: block;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
         }
     }
 }

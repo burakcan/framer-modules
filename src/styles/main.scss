@@ -1,7 +1,15 @@
-$transition: 0.13s;
+$transition: .13s;
+$theme-color: #25c6c6;
+
+@mixin big() {
+    @media (min-width: 35.556em) {
+        @content;
+    }
+}
 
 @import "normalize";
 @import "formalize";
 @import "global";
+@import "header";
 @import "module";
 @import "search";

@@ -1,15 +1,18 @@
 html {
     font-family: 'Roboto', sans-serif;
     font-weight: 300;
-    font-size: 18px;
+    font-size: 16px;
     line-height: 1;
     color: #111;
     background-color: #eee;
+    @include big() {
+        font-size: 18px;
+    }
 }
 
 a {
     text-decoration: none;
-    color: #25c6c6;
+    color: $theme-color;
     user-select: none;
     transition: $transition;
 
@@ -22,7 +25,13 @@ h1, h2, h3, h4, h5, h6, strong, b {
     font-weight: 400;
 }
 
+button {
+    outline: none;
+    background-color: transparent;
+}
+
 .container {
+    position: relative;
     max-width: 800px;
     margin-left: auto;
     margin-right: auto;

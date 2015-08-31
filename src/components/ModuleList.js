@@ -22,6 +22,22 @@ class ModuleList extends Component {
     });
   }
 
+  componentWillUpdate() {
+    const { selected } = this.state;
+    const { searchTerm, searchResult } = this.context;
+
+    if (this._lastSearchTerm !== searchTerm &&
+        searchTerm && searchResult &&
+        !searchResult[selected]) {
+
+      this.setState({
+        selected : null
+      });
+    }
+
+    this._lastSearchTerm = this.context.searchTerm;
+  }
+
   renderItems() {
     const { searchTerm, searchResult, modules } = this.context;
 
@@ -44,7 +60,7 @@ class ModuleList extends Component {
   }
 
   render() {
-    const selected = (this.state.selected)?true:false;
+    const selected = (this.state.selected || this.context.searchFocused) ? true : false;
 
     return (
       <ul data-module-selected={selected} className="modules">
@@ -57,7 +73,9 @@ class ModuleList extends Component {
 ModuleList.contextTypes = {
   modules      : PropTypes.object,
   searchTerm   : PropTypes.string,
-  searchResult : PropTypes.object
+  searchResult : PropTypes.object,
+  searchFocused: PropTypes.bool,
+  loading      : PropTypes.bool,
 }
 
 export default ModuleList;

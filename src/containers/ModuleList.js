@@ -13,7 +13,9 @@ class ModuleList extends Component {
     return {
       modules      : this.props.modules,
       searchTerm   : this.props.searchTerm,
-      searchResult : this.props.searchResult
+      searchResult : this.props.searchResult,
+      searchFocused: this.props.searchFocused,
+      loading      : this.props.loading,
     }
   }
 
@@ -24,23 +26,21 @@ class ModuleList extends Component {
   }
 }
 
-ModuleList.childContextTypes = {
+ModuleList.propTypes = ModuleList.childContextTypes = {
   modules      : PropTypes.object,
   searchTerm   : PropTypes.string,
-  searchResult : PropTypes.object
-}
-
-ModuleList.propTypes = {
-  modules      : PropTypes.object,
-  searchTerm   : PropTypes.string,
-  searchResult : PropTypes.object
+  searchResult : PropTypes.object,
+  searchFocused: PropTypes.bool,
+  loading      : PropTypes.bool,
 }
 
 ModuleList.mapStateToProps = (state) => {
   return {
     modules      : state.modules.modules,
     searchTerm   : state.modules.search.term,
-    searchResult : state.modules.search.result
+    searchResult : state.modules.search.result,
+    searchFocused: state.modules.search.focused,
+    loading      : state.modules.loading,
   }
 }
 
