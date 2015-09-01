@@ -13,4 +13,4 @@ If you change something in the JavaScript or CSS files, they get compiled and mi
 
 ## License
 
-This project is licensed under the MIT license. For more information see `LICENSE.md`.
+This project is licensed under the MIT license.
