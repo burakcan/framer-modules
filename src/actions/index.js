@@ -23,21 +23,3 @@ export function searchModule(searchTerm) {
     payload   : searchTerm
   }
 }
-
-
-export const SEARCH_FOCUS = 'SEARCH_FOCUS';
-
-export function searchFocus() {
-  return {
-    type      : SEARCH_FOCUS
-  }
-}
-
-
-export const SEARCH_BLUR = 'SEARCH_BLUR';
-
-export function searchBlur() {
-  return {
-    type      : SEARCH_BLUR
-  }
-}

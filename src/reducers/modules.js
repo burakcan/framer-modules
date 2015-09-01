@@ -43,14 +43,6 @@ export default (state = initialState, action) => {
       newState.search.term   = searchTerm;
       newState.search.result = search(searchTerm, newState);
       break;
-
-    case ActionTypes.SEARCH_FOCUS:
-      newState.search.focused = true;
-      break;
-
-    case ActionTypes.SEARCH_BLUR:
-      newState.search.focused = false;
-      break;
   }
 
   return newState;

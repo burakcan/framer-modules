@@ -60,7 +60,7 @@ class ModuleList extends Component {
   }
 
   render() {
-    const selected = (this.state.selected || this.context.searchFocused) ? true : false;
+    const selected = (this.state.selected) ? true : false;
 
     return (
       <ul data-module-selected={selected} className="modules">
@@ -74,7 +74,6 @@ ModuleList.contextTypes = {
   modules      : PropTypes.object,
   searchTerm   : PropTypes.string,
   searchResult : PropTypes.object,
-  searchFocused: PropTypes.bool,
   loading      : PropTypes.bool,
 }
 
