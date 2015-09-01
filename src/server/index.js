@@ -8,7 +8,7 @@ import serveStatic from 'serve-static';
 import fs from 'fs';
 
 const app      = Express();
-const port     = 8080;
+const port     = process.env.PORT || 8080;
 const distPath = path.join(__dirname, '../../dist');
 const template = fs.readFileSync(distPath + '/index.html', 'utf8');
 
