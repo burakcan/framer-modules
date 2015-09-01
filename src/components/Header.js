@@ -6,7 +6,7 @@ class Header extends Component {
       <header className="header">
         <div className="container">
           <h1 className="header_title">Framer modules</h1>
-          <a className="add-plugin" href="">Add a module</a>
+          <a className="add-plugin" href="https://github.com/interacthings/framer-modules-list" target="_blank">Add a module</a>
         </div>
       </header>
     )
