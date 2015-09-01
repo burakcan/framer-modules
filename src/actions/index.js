@@ -9,7 +9,7 @@ export function fetchModules() {
     [CALL_API] : {
       types    : [FETCH_MODULES_REQUEST, FETCH_MODULES_SUCCESS, FETCH_MODULES_ERROR],
       root     : 'https://raw.githubusercontent.com/interacthings/framer-modules-list/master/',
-      endpoint : 'modules.json',
+      endpoint : 'modules.json?'+Date.now(),
     }
   }
 }
