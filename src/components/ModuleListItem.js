@@ -3,16 +3,20 @@ import { Spring } from 'react-motion';
 
 class ModuleListItem extends Component {
 
-  componentDidMount() {
+  calculateSpringEnd() {
     const detailEl = React.findDOMNode(this._detail)
-
+    const display  = detailEl.style.display;
     detailEl.style.display = 'block';
 
     this.springEnd = {
       height : {val : detailEl.getClientRects()[0].height + 20, config: [120, 10]}
     }
 
-    detailEl.style.display = 'none';
+    detailEl.style.display = display;
+  }
+
+  componentDidMount() {
+    this.calculateSpringEnd();
   }
 
   render() {
@@ -54,18 +58,22 @@ class ModuleListItem extends Component {
                     {author.name}
                   </a>
                 </li>
-                <li>
-                  <a href={url} target="_blank">
-                    <i className="icon icon-url"></i>
-                    {url}
-                  </a>
-                </li>
-                <li>
-                  <a href={demo} target="_blank">
-                    <i className="icon icon-demo"></i>
-                    {demo}
-                  </a>
-                </li>
+                {(url)?(
+                  <li>
+                    <a href={url} target="_blank">
+                      <i className="icon icon-url"></i>
+                      {url}
+                    </a>
+                  </li>
+                ):null}
+                {(demo)?(
+                  <li>
+                    <a href={demo} target="_blank">
+                      <i className="icon icon-demo"></i>
+                      {demo}
+                    </a>
+                  </li>
+                ):null}
               </ul>
             )
           }.bind(this)}
