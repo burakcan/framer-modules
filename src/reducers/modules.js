@@ -1,50 +1,28 @@
 import * as ActionTypes from 'actions';
-import lunr from 'lunr';
-
-function createSearchIndex() {
-  return lunr(function(){
-    this.field('name');
-    this.field('description');
-    this.field('url');
-    this.field('demo');
-    this.ref('id');
-    this.pipeline.remove(this.stemmer);
-  });
-}
-
-function addIndexes(items, state) {
-  const { index } = state.search;
-
-  for (const id in items) {
-    const item = items[id];
-    index.add({
-      id          : id,
-      name        : item.name,
-      description : item.description
-    });
-  }
-}
 
 function search(searchTerm, state) {
-  const { index } = state.search;
-  const lunrResult = index.search(searchTerm);
-  const result = {};
+  const { modules } = state;
+  const result      = {};
 
-  lunrResult.forEach((item) => {
-    result[item.ref] = state.modules[item.ref];
-  });
+  for (const id in modules) {
+    const item = modules[id];
+    const { description, name } = item;
+
+    if (description.indexOf(searchTerm) > -1 || name.indexOf(searchTerm) > -1) {
+      result[id] = item;
+    }
+  }
 
   return result;
 }
 
-const initialState = {
+export const initialState = {
   loading   : true,
   modules   : {},
   search    : {
     focused : false,
     term    : null,
-    result  : null,
-    index   : createSearchIndex()
+    result  : null
   }
 }
 
@@ -54,7 +32,6 @@ export default (state = initialState, action) => {
   switch (action.type) {
     case ActionTypes.FETCH_MODULES_SUCCESS:
       const modules = action.payload;
-      addIndexes(modules, newState);
       newState.modules = modules;
       newState.loading = false;
       break;

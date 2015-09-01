@@ -4,8 +4,7 @@ import { searchModule, searchFocus, searchBlur } from 'actions';
 class SearchBox extends Component {
   componentDidMount() {
     const el = React.findDOMNode(this);
-    el.style.width = '100%';
-    $(el).sticky();
+    $(el).stick_in_parent();
   }
 
   handleChange() {
