@@ -8,7 +8,9 @@ function search(searchTerm, state) {
     const item = modules[id];
     const { description, name } = item;
 
-    if (description.indexOf(searchTerm) > -1 || name.indexOf(searchTerm) > -1) {
+    if (searchTerm != null && (
+       (description && description.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1) ||
+       (name && name.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1))) {
       result[id] = item;
     }
   }
