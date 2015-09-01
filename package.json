@@ -1,7 +1,7 @@
 {
   "name": "framer-modules",
   "version": "0.0.1",
-  "description": "Framer modules listing",
+  "description": "A collection of Framer modules.",
   "main": "index.js",
   "scripts": {
     "start-dev": "NODE_ENV=development node build.js",
