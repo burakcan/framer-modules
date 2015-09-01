@@ -4,7 +4,7 @@
   "description": "A collection of Framer modules.",
   "main": "index.js",
   "scripts": {
-    "build-client" : "node build.client.js",
+    "build-client": "node build.client.js",
     "build-server": "node build.server.js",
     "start-dev": "NODE_ENV=development npm run build-client",
     "build-prod": "NODE_ENV=production npm run build-client && npm run build-server",
@@ -19,7 +19,6 @@
   "dependencies": {
     "humps": "^0.6.0",
     "isomorphic-fetch": "^2.1.1",
-    "lunr": "^0.5.12",
     "react": "^0.13.3",
     "react-motion": "^0.2.7",
     "react-redux": "^1.0.1",
