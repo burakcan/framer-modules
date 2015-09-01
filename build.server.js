@@ -1,14 +1,26 @@
 var webpack             = require('webpack');
-var HtmlWebpackPlugin   = require('html-webpack-plugin');
-var UglifyJsPlugin      = webpack.optimize.UglifyJsPlugin;
 var path                = require('path');
 var DefinePlugin        = webpack.DefinePlugin;
-var WebpackDevServer    = require("webpack-dev-server");
 var NODE_ENV            = process.env.NODE_ENV || 'production';
+var fs                  = require('fs');
 
-var buildConfig = {
+/*
+ * Build Server App
+ */
+
+var nodeModules = {};
+
+fs.readdirSync('node_modules')
+  .filter(function(x) {
+    return ['.bin'].indexOf(x) === -1;
+  })
+  .forEach(function(mod) {
+    nodeModules[mod] = 'commonjs ' + mod;
+  });
+
+var serverConfig = {
   entry                 : {
-    main                : path.join(__dirname, '/src/index.js')
+    server              : path.join(__dirname, '/src/server/index.js')
   },
 
   output                : {
@@ -17,18 +29,20 @@ var buildConfig = {
     publicPath          : '/'
   },
 
+  target                : 'node',
+
+  node                  : {
+    global              : false,
+    process             : false,
+    Buffer              : false,
+    __filename          : true,
+    __dirname           : true
+  },
+
+  externals             : nodeModules,
+
   plugins               : [
-    new HtmlWebpackPlugin({
-      title             : '',
-      template          : path.join(__dirname, '/src/index.html'),
-      inject            : true
-    }),
-    
-    new webpack.DefinePlugin({
-      'process.env'     : {
-        NODE_ENV        : JSON.stringify(NODE_ENV)
-      }
-    }),
+    new webpack.IgnorePlugin(/\.(css|sass|scss)$/)
   ],
 
   resolve               : {
@@ -61,41 +75,13 @@ var buildConfig = {
   }
 }
 
-if (NODE_ENV === 'development') {
-  buildConfig['devtool'] = 'source-map';
-} else if (NODE_ENV === 'production') {
-  buildConfig.plugins.push(new UglifyJsPlugin({
-    compress  : { warnings : false },
-    sourcemap : false,
-    mangle    : true
+const compiler = webpack(serverConfig);
+
+compiler.run(function (err, stats) {
+  if (err) throw err;
+
+  console.log(stats.toString({
+    colors : true,
+    chunks : false
   }));
-}
-
-const compiler = webpack(buildConfig);
-
-if (NODE_ENV === 'development') {
-  const server = new WebpackDevServer(compiler, {
-    contentBase : path.join(__dirname, 'dist'),
-    noInfo: false,
-    quiet: false,
-    lazy: false,
-    publicPath: '/',
-    stats: {
-      colors: true,
-      chunks: false
-    }
-  });
-
-  server.listen(3000, 'localhost', function(){
-    console.log('Webpack Dev Server is listening on port 3000');
-  });
-} else if (NODE_ENV === 'production') {
-  compiler.run(function (err, stats) {
-    if (err) throw err;
-
-    console.log(stats.toString({
-      colors : true,
-      chunks : false
-    }));
-  });
-}
+});

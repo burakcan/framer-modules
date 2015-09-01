@@ -4,8 +4,11 @@
   "description": "A collection of Framer modules.",
   "main": "index.js",
   "scripts": {
-    "start-dev": "NODE_ENV=development node build.js",
-    "build-prod": "NODE_ENV=production node build.js"
+    "build-client" : "node build.client.js",
+    "build-server": "node build.server.js",
+    "start-dev": "NODE_ENV=development npm run build-client",
+    "build-prod": "NODE_ENV=production npm run build-client && npm run build-server",
+    "start": "NODE_ENV=production npm run build-prod && node dist/server.js"
   },
   "keywords": [],
   "author": "Adem Ilter <adem@interacthings.com>",
@@ -30,6 +33,7 @@
     "css-loader": "^0.16.0",
     "file-loader": "^0.8.4",
     "html-webpack-plugin": "^1.6.1",
+    "json-loader": "^0.5.2",
     "node-sass": "^3.3.2",
     "sass-loader": "^2.0.1",
     "style-loader": "^0.12.3",
